@@ -1,0 +1,195 @@
+<!DOCTYPE>
+
+<html>
+
+  <head>
+    <title>cytoscape-dagre.js demo</title>
+
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+
+    <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+
+    <!-- for testing with local version of cytoscape.js -->
+    <!--<script src="../cytoscape.js/build/cytoscape.js"></script>-->
+
+    <script src="https://unpkg.com/dagre@0.7.4/dist/dagre.js"></script>
+    <script src="cytoscape-dagre.js"></script>
+    <script src="cytoscape-node-html-label.min.js"></script>
+
+    <style>
+      body {
+        font-family: helvetica;
+        font-size: 14px;
+      }
+
+      #cy {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 999;
+        background: url(./bg.jpg);
+      }
+
+      h1 {
+        opacity: 0.5;
+        font-size: 1em;
+      }
+
+      .card {
+        text-align: center;
+      }
+      .l {
+        color: #333;
+        font-size: 18px;
+        text-align: center;
+      }
+      .m {
+        color: #333;
+        font-size: 18px;
+        text-align: center;
+      }
+      .f {
+        color: #333;
+        font-size: 24px;
+        text-align: center;
+      }
+      .y {
+        color: #333;
+        font-size: 18px;
+        text-align: center;
+      }
+    </style>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', function(){
+
+        var cy = window.cy = cytoscape({
+          container: document.getElementById('cy'),
+
+          animate: true,
+          boxSelectionEnabled: false,
+          autounselectify: true,
+
+          layout: {
+            name: 'dagre'
+          },
+
+          style: [
+            {
+              selector: 'node',
+              style: {
+                width: 140,
+                height: 120,
+                'background-image': './g.png',
+                'shape': 'round-heptagon',
+                'background-color': '#FF934F',
+                'background-fit': 'contain'
+              }
+            },
+
+            {
+              selector: 'edge',
+              style: {
+                'width': 3,
+                'target-arrow-shape': 'triangle',
+                'line-color': '#9dbaea',
+                'target-arrow-color': '#9dbaea',
+                'curve-style': 'bezier'
+              }
+            }
+          ],
+
+          elements: {
+            nodes: [
+              { data: { id: 'n0', f: 'Таңат' } },
+              { data: { id: 'n1', f: 'Байжан', m: 'Таңатұлы' } },
+              { data: { id: 'n2', f: 'Көбен', m: 'Таңатұлы' } },
+              { data: { id: 'n3', f: 'Бостан', m: 'Таңатұлы' } },
+              { data: { id: 'n4', f: 'Даубай', m: 'Таңатұлы' } },
+              { data: { id: 'n5', f: 'Шонды', m: 'Таңатұлы' } },
+              { data: { id: 'n6', f: 'Жирен', m: 'Таңатұлы' } },
+              { data: { id: 'n7', f: 'Абайлда', m: 'Даубайұлы' } },
+              { data: { id: 'n8', f: 'Бақтыбай', m: 'Даубайұлы' } },
+              { data: { id: 'n9', f: 'Карағұл', m: 'Даубайұлы' } },
+              { data: { id: 'n10', f: 'Шөпшек', m: 'Даубайұлы' } },
+              { data: { id: 'n11', f: 'Кәшке', m: 'Бақтыбайұлы' } },
+              { data: { id: 'n12', f: 'Шөңке', m: 'Бақтыбайұлы' } },
+              { data: { id: 'n13', f: 'Байғабат', m: 'Бақтыбайұлы' } },
+              { data: { id: 'n14', f: 'Әмірбай', m: 'Шөңкеұлы', y: 1891 } },
+              { data: { id: 'n15', f: 'Ізбасар', m: 'Шөңкеұлы', y: 1903 } },
+              { data: { id: 'n16', f: 'Мұхурбай', m: 'Әмірбайұлы', l: 'Шөңке', y: 1925 } },
+              { data: { id: 'n17', f: 'Сағат', m: 'Әмірбайұлы', l: 'Шөңке', y: 1928 } },
+              { data: { id: 'n18', f: 'Кайжан', m: 'Әмірбайұлы', l: 'Шөңке', y: 1937 } },
+              { data: { id: 'n19', f: 'Бейсетай', m: 'Әмірбайұлы', l: 'Шөңке', y: 1948 } },
+              { data: { id: 'n20', f: 'Тілеужан', m: 'Ізбасарұлы', l: 'Шөңке', y: 1939 } },
+              { data: { id: 'n21', f: 'Тілеуқабыл', m: 'Ізбасарұлы', l: 'Шөңке', y: 1941 } },
+              { data: { id: 'n22', f: 'Тілеуберген', m: 'Ізбасарұлы', l: 'Шөңке', y: 1944} },
+              { data: { id: 'n23', f: 'Сағатбай', m: 'Ізбасарұлы', l: 'Шөңке', y: 1947 } },
+              { data: { id: 'n24', f: 'Дәулет', m: 'Ізбасарұлы', l: 'Шөңке', y: 1950 } },
+              { data: { id: 'n25', f: 'Райса', m: 'Ізбасарқызы', l: 'Шөңке', y: 1953 } },
+
+            ],
+            edges: [
+              { data: { source: 'n0', target: 'n1' } },
+              { data: { source: 'n0', target: 'n2' } },
+              { data: { source: 'n0', target: 'n3' } },
+              { data: { source: 'n0', target: 'n4' } },
+              { data: { source: 'n0', target: 'n5' } },
+              { data: { source: 'n0', target: 'n6' } },
+              { data: { source: 'n4', target: 'n7' } },
+              { data: { source: 'n4', target: 'n8' } },
+              { data: { source: 'n4', target: 'n9' } },
+              { data: { source: 'n4', target: 'n10' } },
+              { data: { source: 'n8', target: 'n11' } },
+              { data: { source: 'n8', target: 'n12' } },
+              { data: { source: 'n8', target: 'n13' } },
+              { data: { source: 'n12', target: 'n14' } },
+              { data: { source: 'n12', target: 'n15' } },
+              { data: { source: 'n14', target: 'n16' } },
+              { data: { source: 'n14', target: 'n17' } },
+              { data: { source: 'n14', target: 'n18' } },
+              { data: { source: 'n14', target: 'n19' } },
+              { data: { source: 'n15', target: 'n20' } },
+              { data: { source: 'n15', target: 'n21' } },
+              { data: { source: 'n15', target: 'n22' } },
+              { data: { source: 'n15', target: 'n23' } },
+              { data: { source: 'n15', target: 'n24' } },
+              { data: { source: 'n15', target: 'n25' } },
+            ]
+          }
+        });
+        cy.nodeHtmlLabel(
+          [
+            {
+                query: 'node', // cytoscape query selector
+                halign: 'center', // title vertical position. Can be 'left',''center, 'right'
+                valign: 'center', // title vertical position. Can be 'top',''center, 'bottom'
+                halignBox: 'center', // title vertical position. Can be 'left',''center, 'right'
+                valignBox: 'center', // title relative box vertical position. Can be 'top',''center, 'bottom'
+                cssClass: '', // any classes will be as attribute of <div> container for every title
+                tpl: function(data){
+                  return `
+                    <div class="card">
+                      ${data.l ? `<span class="l" align="center">${data.l}</span><br>` : ''}
+                      ${data.f ? `<span class="f" align="center">${data.f}</span><br>` : ''}
+                      ${data.m ? `<span class="m" align="center">${data.m}</span><br>` : ''}
+                      ${data.y ? `<span class="y" align="center">(${data.y})</span>` : ''}
+                    </div>
+                    
+                  `;
+                } // your html template here
+            }
+          ]
+        );
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="cy"></div>
+  </body>
+
+</html>
+
